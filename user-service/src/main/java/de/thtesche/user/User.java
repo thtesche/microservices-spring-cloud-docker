@@ -1,6 +1,7 @@
 package de.thtesche.user;
 
 import java.sql.Timestamp;
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,7 +19,7 @@ public class User {
   @GeneratedValue(strategy = GenerationType.AUTO)
   private long id;
   @Version
-  private Timestamp lastUpdate;
+  private long version;
   private String firstName;
   private String nickName;
   private String lastName;
@@ -84,20 +85,6 @@ public class User {
   }
 
   /**
-   * @return the lastUpdate
-   */
-  public Timestamp getLastUpdate() {
-    return lastUpdate;
-  }
-
-  /**
-   * @param lastUpdate the lastUpdate to set
-   */
-  public void setLastUpdate(Timestamp lastUpdate) {
-    this.lastUpdate = lastUpdate;
-  }
-
-  /**
    * @return the nickName
    */
   public String getNickName() {
@@ -109,5 +96,33 @@ public class User {
    */
   public void setNickName(String nickName) {
     this.nickName = nickName;
+  }
+
+  /**
+   * @return the id
+   */
+  public long getId() {
+    return id;
+  }
+
+  /**
+   * @param id the id to set
+   */
+  public void setId(long id) {
+    this.id = id;
+  }
+
+  /**
+   * @return the version
+   */
+  public long getVersion() {
+    return version;
+  }
+
+  /**
+   * @param version the version to set
+   */
+  public void setVersion(long version) {
+    this.version = version;
   }
 }

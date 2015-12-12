@@ -1,0 +1,5 @@
+---
+user-service:
+   image: thtesche/user-service
+   ports:
+      - "8080:8080"
