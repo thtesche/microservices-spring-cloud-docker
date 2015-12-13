@@ -9,10 +9,12 @@
     
    <description>Dockerized API-Gateway with micoservices</description>
    <name>Demo: Dockerized API-Gateway</name>
-    <modules>
-        <module>user-service</module>
-    </modules>
-    <properties>
+   <modules>
+      <module>user-service</module>
+      <module>eureka-server</module>
+      <module>zuul-proxy</module>
+   </modules>
+   <properties>
       <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
    </properties>
 </project>

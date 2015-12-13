@@ -1,5 +1,32 @@
 ---
+eureka-server:
+   image: thtesche/eureka-server
+   ports:
+      - "8761:8761"
+   expose:
+      - "8761"      
+   net: "bridge"
+#   net: "host"
+     
 user-service:
    image: thtesche/user-service
+#   ports:
+#      - "10080:10080"      
+   expose:
+      - "10080"      
+   net: "bridge"
+   links:
+      - eureka-server:eureka-server
+#   net: "host"
+      
+zuul-proxy:
+   image: thtesche/zuul-proxy
    ports:
       - "8080:8080"
+   expose:
+      - "8080"        
+   net: "bridge"      
+   links:
+      - user-service:user-service
+      - eureka-server:eureka-server      
+#   net: "host"

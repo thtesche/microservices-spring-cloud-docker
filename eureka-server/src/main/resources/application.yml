@@ -1,0 +1,19 @@
+## YAML Template.
+---
+spring:
+   profiles: default
+   application:
+      name: eureka-server  
+  
+server:
+   port: 8761
+   
+eureka:
+   instance:
+      preferIpAddress: true
+   client:
+      registerWithEureka: false
+      fetchRegistry: false
+      serviceUrl:
+         defaultZone: http://localhost:${server.port}/eureka/
+         
