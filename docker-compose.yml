@@ -10,8 +10,8 @@ eureka-server:
      
 user-service:
    image: thtesche/user-service
-   expose:
-      - "10080"      
+#   expose:
+#      - "10080"      
    net: "bridge"
    links:
       - eureka-server
