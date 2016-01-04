@@ -1,0 +1,8 @@
+## YAML Template.
+---
+#server:
+#   port: 9999
+#security:
+#   user:
+#      password: password
+##server.contextPath=/uaa
