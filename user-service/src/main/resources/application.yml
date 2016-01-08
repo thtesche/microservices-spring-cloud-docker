@@ -3,7 +3,19 @@
 spring:
   application:
     name: user-service
-    
+
+security:
+  oauth2:
+    resource:
+      userInfoUri: http://localhost:9999/uaa/user  
+      tokenInfoUri: http://localhost:9999/uaa/oauth/check_token
+    client:
+      client-id: acme
+      client-secret: acmesecret
+#      access-token-uri: http://localhost:9999/uaa/oauth/token
+#      user-authorization-uri: http://localhost:9999/uaa/oauth/authorize
+#      scope: users
+      
 server:
    port: 10080
    
@@ -12,5 +24,14 @@ eureka:
       preferIpAddress: true
    client:
       serviceUrl:
-         defaultZone: http://eureka-server:8761/eureka/   
- 
+         defaultZone: http://eureka-server:8761/eureka/        
+         
+management:
+  security:
+    enabled: false
+    
+logging:
+   level: 
+      org.springframework: DEBUG
+    
+    
