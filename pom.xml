@@ -13,7 +13,7 @@
       <module>user-service</module>
       <module>eureka-server</module>
       <module>zuul-proxy</module>
-      <module>authserver</module>
+      <module>auth-server</module>
    </modules>
    <properties>
       <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

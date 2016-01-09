@@ -9,13 +9,7 @@ server:
 
 logging:
    level:
-      org:
-         springframework:
-            cloud:
-               netflix:
-                  zuul:
-                     filters:
-                        ProxyRouteLocator: WARN
+      org.springframework.cloud.netflix.zuul.filters.ProxyRouteLocator: WARN
 
 eureka:
    instance:

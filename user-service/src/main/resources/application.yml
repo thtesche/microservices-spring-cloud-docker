@@ -7,14 +7,11 @@ spring:
 security:
   oauth2:
     resource:
-      userInfoUri: http://localhost:9999/uaa/user  
-      tokenInfoUri: http://localhost:9999/uaa/oauth/check_token
+      userInfoUri: http://zuul-proxy:8080/auth-server/user  
+      tokenInfoUri: http://zuul-proxy:8080/auth-server/oauth/check_token
     client:
       client-id: acme
       client-secret: acmesecret
-#      access-token-uri: http://localhost:9999/uaa/oauth/token
-#      user-authorization-uri: http://localhost:9999/uaa/oauth/authorize
-#      scope: users
       
 server:
    port: 10080
@@ -32,6 +29,6 @@ management:
     
 logging:
    level: 
-      org.springframework: DEBUG
+      org.springframework: INFO
     
     

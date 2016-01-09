@@ -6,24 +6,26 @@ eureka-server:
    expose:
       - "8761"      
    net: "bridge"
-#   net: "host"
      
 user-service:
    image: thtesche/user-service
-#   expose:
-#      - "10080"      
    net: "bridge"
    links:
       - eureka-server
-#   net: "host"
+      - zuul-proxy
+
+auth-server:
+   image: thtesche/auth-server
+   net: "bridge"
+   links:
+      - eureka-server
       
 zuul-proxy:
    image: thtesche/zuul-proxy
    ports:
       - "8080:8080"
-#   expose:
-#      - "8080"        
+   expose:
+      - "8080"        
    net: "bridge"      
    links:
       - eureka-server
-#   net: "host"

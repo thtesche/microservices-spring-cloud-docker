@@ -28,7 +28,7 @@ public class AuthserverApplicationTests {
    @Test
    public void homePageProtected() {
       ResponseEntity<String> response = template.getForEntity("http://localhost:"
-              + port + "/uaa/", String.class);
+              + port + "/", String.class);
       assertEquals(HttpStatus.UNAUTHORIZED, response.getStatusCode());
       String auth = response.getHeaders().getFirst("WWW-Authenticate");
       assertTrue("Wrong header: " + auth, auth.startsWith("Bearer realm=\""));
@@ -37,7 +37,7 @@ public class AuthserverApplicationTests {
    @Test
    public void userEndpointProtected() {
       ResponseEntity<String> response = template.getForEntity("http://localhost:"
-              + port + "/uaa/user", String.class);
+              + port + "/user", String.class);
       assertEquals(HttpStatus.UNAUTHORIZED, response.getStatusCode());
       String auth = response.getHeaders().getFirst("WWW-Authenticate");
       assertTrue("Wrong header: " + auth, auth.startsWith("Bearer realm=\""));
@@ -46,7 +46,7 @@ public class AuthserverApplicationTests {
    @Test
    public void authorizationRedirects() {
       ResponseEntity<String> response = template.getForEntity("http://localhost:"
-              + port + "/uaa/oauth/authorize", String.class);
+              + port + "/oauth/authorize", String.class);
       assertEquals(HttpStatus.UNAUTHORIZED, response.getStatusCode());
       String auth = response.getHeaders().getFirst("WWW-Authenticate");
       assertTrue("Wrong header: " + auth, auth.startsWith("Basic realm=\""));
