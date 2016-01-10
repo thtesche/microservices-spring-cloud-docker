@@ -23,15 +23,15 @@ Build from the root of the multi-module project with
 
 This creates docker images for all components:
 
-`REPOSITORY               TAG                 IMAGE ID       CREATED             VIRTUAL SIZE
+`REPOSITORY               TAG                 IMAGE ID       CREATED             VIRTUAL SIZE`
 
-thtesche/auth-server     latest              10a3...        13 minutes ago      705.1 MB
+`thtesche/auth-server     latest              10a3...        13 minutes ago      705.1 MB`
 
-thtesche/zuul-proxy      latest              1e3b...        13 minutes ago      698.4 MB
+`thtesche/zuul-proxy      latest              1e3b...        13 minutes ago      698.4 MB`
 
-thtesche/eureka-server   latest              3fca...        14 minutes ago      717 MB
+`thtesche/eureka-server   latest              3fca...        14 minutes ago      717 MB`
 
-thtesche/user-service    latest              d4d6...        14 minutes ago      732.5 MB`
+`thtesche/user-service    latest              d4d6...        14 minutes ago      732.5 MB`
 
 
 To run all services together type 
