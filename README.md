@@ -75,5 +75,32 @@ See [OAuth2 secured user service access](#access_user_service) for the usage of 
 
 ## <a name="access_user_service"></a>OAuth2 secured user service access
 
- `curl -s -H  "Authorization: Bearer $TOKEN" http://localhost:8080/auth-server/user | jq .` calls the entry point of the user service.
+ `curl -s -H  "Authorization: Bearer $TOKEN" http://localhost:8080/auth-server/user | jq .` 
 
+calls the entry point of the user service and response with:
+
+> {
+>  "name": "user",
+>  "details": {
+>    "decodedDetails": null,
+>    "tokenType": "Bearer",
+>    "tokenValue": "e2c4c39b-8c96-4652-94a7-9ca14b647557",
+>    "sessionId": null,
+>    "remoteAddress": "172.17.0.3"
+>  },
+>  "authorities": [
+>    {
+>      "authority": "ROLE_ADMIN"
+>    },
+>    {
+>      "authority": "ROLE_USER"
+>    }
+>  ],
+>  "authenticated": true,
+>  "userAuthentication": {
+>    "name": "user",
+>    "credentials": null,
+>    "principal": {
+>      "enabled": true,
+>      "credentialsNonExpired": true,
+> .....
