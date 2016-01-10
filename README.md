@@ -45,7 +45,7 @@ After you see *Started Eureka Server* on the console (needs some seconds) you co
 ### Authorization Code Grant
 Visit in your browser
 
-<a href="http://localhost:8080/auth-server/oauth/authorize?response_type=code&client_id=acme&redirect_uri=http://example.com&scope=users&state=22368"></a>
+<a href="http://localhost:8080/auth-server/oauth/authorize?response_type=code&client_id=acme&redirect_uri=http://example.com&scope=users&state=22368">http://localhost:8080/auth-server/oauth/authorize?response_type=code&client_id=acme&redirect_uri=http://example.com&scope=users&state=22368</a>
 
 Use user/password as credentials asked after calling the above url.
 Approve the access and save the returned code (see the url in the browser) in the current shell. Take the value from the code parameter: http://example.com/?code=HVe3yh&state=22368
