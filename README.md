@@ -45,7 +45,7 @@ After you see *Started Eureka Server* on the console (needs some seconds) you co
 ### Authorization Code Grant
 Visit in your browser
 
-`http://localhost:8080/auth-server/oauth/authorize?response_type=code&client_id=acme&redirect_uri=http://example.com&scope=users&state=22368`
+http://localhost:8080/auth-server/oauth/authorize?response_type=code&client_id=acme&redirect_uri=http://example.com&scope=users&state=22368
 
 Use user/password as credentials asked after calling the above url.
 Approve the access and save the returned code (see the url in the browser) in the current shell. Take the value from the code parameter: http://example.com/?code=HVe3yh&state=22368
@@ -55,11 +55,24 @@ This value will vary with every call because it's a one time token.
 
 Request the refresh and access token:
 
-`curl acme:acmesecret@localhost:8080/auth-server/oauth/token -d grant_type=authorization_code -d client_id=acme -d redirect_uri=http://example.com -d code=$CODE -s | jq .`
+`curl acme:acmesecret@localhost:8080/auth-server/oauth/token -d grant_type=authorization_code \\`
+`-d client_id=acme -d redirect_uri=http://example.com -d code=$CODE -s | jq .`
 
-## OAuth2 secured user service access
+The output should look like this:
+> {
+  "scope": "users",
+  "expires_in": 43199,
+  "refresh_token": "7bd3efa5-ad48-445e-b381-a1010c785162",
+  "token_type": "bearer",
+  "access_token": "e2c4c39b-8c96-4652-94a7-9ca14b647557"
+}
 
- goto http://localhost:8080/user-service/users . You should see all users bootstrap into the user-service.
+`TOKEN=e2c4c39b-8c96-4652-94a7-9ca14b647557`
+
+See [OAuth2 secured user service access](#access_user_service) for the usage of the token.
 
 
+## <a name="access_user_service"></a>OAuth2 secured user service access
+
+ `curl -s -H  "Authorization: Bearer $TOKEN" http://localhost:8080/auth-server/user | jq .` calls the entry point of the user service.
 
