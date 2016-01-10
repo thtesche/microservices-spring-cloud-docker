@@ -89,41 +89,105 @@ See [OAuth2 secured user service access](#access_user_service) for the usage of 
       "access_token": "e2c4c39b-8c96-4652-94a7-9ca14b647557"
       }
 
-
 `TOKEN=e2c4c39b-8c96-4652-94a7-9ca14b647557`
 
 See [OAuth2 secured user service access](#access_user_service) for the usage of the token.
 
-### 
+### Client Credentials Grant
+
+      curl -s acme:acmesecret@localhost:8080/auth-server/oauth/token  -d grant_type=client_credentials -d scope=users | jq .
+      {
+      "scope": "users",
+      "expires_in": 43199,
+      "token_type": "bearer",
+      "access_token": "b98ddcf0-ae90-40b2-83f9-5f22b28bf277"
+      }
+
+NOTE: This grant requests the access token for acme not for user. 
+
+## OAuth2 secured user information resource in authentication server
+
+This call delivers all information about the user for whom the access token was issued.
+
+      curl -s -H  "Authorization: Bearer $TOKEN" http://localhost:8080/auth-server/user | jq .
+      {
+        "name": "user",
+        "details": {
+          "decodedDetails": null,
+          "tokenType": "Bearer",
+          "tokenValue": "e2c4c39b-8c96-4652-94a7-9ca14b647557",
+          "sessionId": null,
+          "remoteAddress": "172.17.0.3"
+        },
+        "authorities": [
+          {
+            "authority": "ROLE_ADMIN"
+          },
+          {
+            "authority": "ROLE_USER"
+          }
+      ],
+      "authenticated": true,
+        "userAuthentication": {
+          "name": "user",
+          "credentials": null,
+          "principal": {
+            "enabled": true,
+            "credentialsNonExpired": true,
+       .....
+
+
 
 ## <a name="access_user_service"></a>OAuth2 secured user service access
 
- `curl -s -H  "Authorization: Bearer $TOKEN" http://localhost:8080/auth-server/user | jq .` 
+      curl -s -H  "Authorization: Bearer $TOKEN" http://localhost:8080/user-service/users | jq . 
+      {
+        "page": {
+          "number": 0,
+          "totalPages": 1,
+          "totalElements": 2,
+          "size": 20
+        },
+        "_links": {
+          "profile": {
+            "href": "http://localhost:8080/user-service/profile/users"
+          },
+          "self": {
+            "href": "http://localhost:8080/user-service/users"
+          }
+        },
+        "_embedded": {
+          "users": [
+            {
+              "_links": {
+                "user": {
+                  "href": "http://localhost:8080/user-service/users/1"
+                },
+                "self": {
+                  "href": "http://localhost:8080/user-service/users/1"
+                }
+              },
+              "email": "mick@mudder.com",
+              "lastName": "Mudder",
+              "nickName": "muddy",
+              "firstName": "Mick"
+            },
+            {
+              "_links": {
+                "user": {
+                  "href": "http://localhost:8080/user-service/users/2"
+                },
+                "self": {
+                  "href": "http://localhost:8080/user-service/users/2"
+                }
+              },
+              "email": "denis@dorgen.com",
+              "lastName": "Dorgen",
+              "nickName": "dorgy",
+              "firstName": "Dennis"
+            }
+          ]
+        }
+      }
 
-calls the entry point of the user service and response with:
 
-> {
->  "name": "user",
->  "details": {
->    "decodedDetails": null,
->    "tokenType": "Bearer",
->    "tokenValue": "e2c4c39b-8c96-4652-94a7-9ca14b647557",
->    "sessionId": null,
->    "remoteAddress": "172.17.0.3"
->  },
->  "authorities": [
->    {
->      "authority": "ROLE_ADMIN"
->    },
->    {
->      "authority": "ROLE_USER"
->    }
->  ],
->  "authenticated": true,
->  "userAuthentication": {
->    "name": "user",
->    "credentials": null,
->    "principal": {
->      "enabled": true,
->      "credentialsNonExpired": true,
-> .....
