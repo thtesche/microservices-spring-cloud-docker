@@ -4,3 +4,4 @@
 /eureka-server/target/
 /auth-server/target/
 /.idea/
+*.iml
