@@ -1,4 +1,4 @@
-package de.thtesche.udemy.zuul;
+package thtesche.zuul;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

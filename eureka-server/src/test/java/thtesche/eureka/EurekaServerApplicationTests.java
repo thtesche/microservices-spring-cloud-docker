@@ -1,4 +1,4 @@
-package de.thtesche.udemy;
+package thtesche.eureka;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
