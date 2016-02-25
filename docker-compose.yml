@@ -1,31 +1,41 @@
 ---
-eureka-server:
-   image: thtesche/eureka-server
-#   ports:
-#      - "8761:8761"
-   expose:
-      - "8761"      
-   net: "bridge"
-     
-user-service:
-   image: thtesche/user-service
-   net: "bridge"
-   links:
-      - eureka-server
-      - zuul-proxy
+version: '2'
+services:
+   eureka-server:
+      image: thtesche/eureka-server
+   #   ports:
+   #      - "8761:8761"
+      expose:
+         - "8761"
+      networks:
+         - single-tier
 
-auth-server:
-   image: thtesche/auth-server
-   net: "bridge"
-   links:
-      - eureka-server
-      
-zuul-proxy:
-   image: thtesche/zuul-proxy
-   ports:
-      - "8080:8080"
-   expose:
-      - "8080"        
-   net: "bridge"      
-   links:
-      - eureka-server
+   user-service:
+      image: thtesche/user-service
+      links:
+         - eureka-server
+         - zuul-proxy
+      networks:
+         - single-tier
+
+   auth-server:
+      image: thtesche/auth-server
+      links:
+         - eureka-server
+      networks:
+         - single-tier
+
+   zuul-proxy:
+      image: thtesche/zuul-proxy
+      ports:
+         - "8080:8080"
+      expose:
+         - "8080"
+      links:
+         - eureka-server
+      networks:
+         - single-tier
+
+networks:
+   single-tier:
+      driver: bridge
