@@ -3,8 +3,8 @@ version: '2'
 services:
    eureka-server:
       image: thtesche/eureka-server
-   #   ports:
-   #      - "8761:8761"
+      ports:
+         - "8761:8761"
       expose:
          - "8761"
       networks:
